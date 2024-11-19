@@ -14,6 +14,10 @@ resource "azurerm_network_interface" "example" {
     tags = local.mytags
 }
 
+resource "azurerm_public_ip_address" "vm_ip"{
+    
+}
+
 resource "azurerm_windows_virtual_machine" "example" {
   count               = var.vm_count
   name                = "example-${count.index}"

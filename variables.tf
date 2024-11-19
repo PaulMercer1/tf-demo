@@ -7,9 +7,9 @@ variable "vm_count" {
   }
 }
 
+# $vm_size
 variable "vm_size" {
-    type = string
-    default = "Standard_F2"
+  type = string
 }
 
 variable "location" {
