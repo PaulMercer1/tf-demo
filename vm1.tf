@@ -1,6 +1,6 @@
 
 resource "azurerm_network_interface" "example" {
-  count               = 5
+  count               = var.vm_count
   name                = "example-nic-${count.index}"
   location            = azurerm_resource_group.example.location
   resource_group_name = azurerm_resource_group.example.name
@@ -11,15 +11,15 @@ resource "azurerm_network_interface" "example" {
     private_ip_address_allocation = "Dynamic"
   }
 
-    tags = mytags
+    tags = local.mytags
 }
 
 resource "azurerm_windows_virtual_machine" "example" {
-  count               = 5
+  count               = var.vm_count
   name                = "example-${count.index}"
   resource_group_name = azurerm_resource_group.example.name
   location            = azurerm_resource_group.example.location
-  size                = "Standard_F2"
+  size                = var.vm_size
   admin_username      = "adminuser"
   admin_password      = "P@$$w0rd1234!"
   network_interface_ids = [
@@ -38,5 +38,6 @@ resource "azurerm_windows_virtual_machine" "example" {
     version   = "latest"
   }
 
-  tags = mytags
+  tags = merge(local.mytags,
+    {ExtraThing = "More data"})
 }
