@@ -13,6 +13,6 @@ provider "azurerm" {
 }
 
 resource "azurerm_resource_group" "example" {
-  name     = "example-tf"
+  name     = "example-tf2"
   location = var.location
 }

@@ -1,3 +1,8 @@
+variable "use_second_vm"{
+    type = bool
+    default = false
+}
+
 variable "vm_count" {
   type = number
   description = "How many VMs"
