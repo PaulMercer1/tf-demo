@@ -1,0 +1,17 @@
+digraph G {
+  rankdir = "RL";
+  node [shape = rect, fontname = "sans-serif"];
+  "azurerm_network_interface.example" [label="azurerm_network_interface.example"];
+  "azurerm_network_interface.example2" [label="azurerm_network_interface.example2"];
+  "azurerm_resource_group.example" [label="azurerm_resource_group.example"];
+  "azurerm_subnet.example" [label="azurerm_subnet.example"];
+  "azurerm_virtual_network.example" [label="azurerm_virtual_network.example"];
+  "azurerm_windows_virtual_machine.example" [label="azurerm_windows_virtual_machine.example"];
+  "azurerm_windows_virtual_machine.example2" [label="azurerm_windows_virtual_machine.example2"];
+  "azurerm_network_interface.example" -> "azurerm_subnet.example";
+  "azurerm_network_interface.example2" -> "azurerm_subnet.example";
+  "azurerm_subnet.example" -> "azurerm_virtual_network.example";
+  "azurerm_virtual_network.example" -> "azurerm_resource_group.example";
+  "azurerm_windows_virtual_machine.example" -> "azurerm_network_interface.example";
+  "azurerm_windows_virtual_machine.example2" -> "azurerm_network_interface.example2";
+}
