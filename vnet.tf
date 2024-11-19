@@ -1,22 +1,16 @@
-resource "azurerm_virtual_network" "example" {
-  name                = "example-network"
-  address_space       = [var.vnet_address]
-  location            = azurerm_resource_group.example.location
-  resource_group_name = azurerm_resource_group.example.name
+module "myvnt1" {
+  source = "./network"
 
-    tags = local.mytags
+  location = azurerm_resource_group.example.location
+  resourcegroup_name = azurerm_resource_group.example.name
+  vnet_cidr = var.vnet_address
 }
 
-resource "azurerm_subnet" "example" {
-  name                 = "internal"
-  resource_group_name  = azurerm_resource_group.example.name
-  virtual_network_name = azurerm_virtual_network.example.name
-  address_prefixes     = [cidrsubnet(var.vnet_address,8, 1)]
-}
-
-resource "azurerm_subnet" "example2" {
-  name                 = "internal2"
-  resource_group_name  = azurerm_resource_group.example.name
-  virtual_network_name = azurerm_virtual_network.example.name
-  address_prefixes     = [cidrsubnet(var.vnet_address,8, 2)]
+module "myvnt2" {
+  source = "./network"
+  
+  location = azurerm_resource_group.example.location
+  resourcegroup_name = azurerm_resource_group.example.name
+  vnet_cidr = "10.2.0.0/16"
+  vnet_name = "secondvnet"
 }

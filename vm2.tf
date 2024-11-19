@@ -6,7 +6,7 @@ resource "azurerm_network_interface" "example2" {
 
   ip_configuration {
     name                          = "internal"
-    subnet_id                     = azurerm_subnet.example.id
+    subnet_id                     = module.myvnt2.subnet1_id
     private_ip_address_allocation = "Dynamic"
   }
 }

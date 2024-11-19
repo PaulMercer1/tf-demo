@@ -7,15 +7,11 @@ resource "azurerm_network_interface" "example" {
 
   ip_configuration {
     name                          = "internal"
-    subnet_id                     = azurerm_subnet.example.id
+    subnet_id                     = module.myvnt1.subnet1_id
     private_ip_address_allocation = "Dynamic"
   }
 
     tags = local.mytags
-}
-
-resource "azurerm_public_ip_address" "vm_ip"{
-    
 }
 
 resource "azurerm_windows_virtual_machine" "example" {
